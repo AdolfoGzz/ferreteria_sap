@@ -1,10 +1,9 @@
 import { 
-  AnalyticalTable,
   Button,
   FlexBox
 } from '@ui5/webcomponents-react';
 import { useMemo } from 'react';
-import { Card, Title } from '@ui5/webcomponents-react';
+import BaseTable from './BaseTable';
 
 export interface Sugerencia {
   id: number;
@@ -22,35 +21,9 @@ interface SugerenciasTableProps {
 }
 
 const STYLES = {
-  container: {
-    width: '100%',
-    marginBottom: '1.5rem'
-  },
-  card: {
-    width: '100%',
-    height: 'fit-content',
-    padding: '0',
-    overflow: 'hidden'
-  },
-  cardHeader: {
-    padding: '1rem',
-    borderBottom: '1px solid var(--sapList_BorderColor)',
-    fontSize: '1.125rem',
-    marginBottom: '1rem'
-  },
-  table: {
-    width: "100%",
-    boxShadow: "var(--sapContent_Shadow0)",
-    borderRadius: "var(--sapElement_BorderCornerRadius)",
-    marginBottom: "0",
-    height: 'fit-content'
-  },
   button: {
     minWidth: '32px',
     padding: '0 4px'
-  },
-  content: {
-    padding: '1rem'
   }
 } as const;
 
@@ -114,22 +87,10 @@ export default function SugerenciasTable({
   ], [onAceptar, onRechazar, onEditar]);
 
   return (
-    <div style={STYLES.container}>
-      <Card style={STYLES.card}>
-        <Title level="H3" style={STYLES.cardHeader}>Sugerencias de Compra IA</Title>
-        <div style={STYLES.content}>
-          <AnalyticalTable
-            data={sugerencias}
-            columns={columns}
-            selectionMode="None"
-            scaleWidthMode="Grow"
-            visibleRows={8}
-            minRows={4}
-            style={STYLES.table}
-            infiniteScroll={false}
-          />
-        </div>
-      </Card>
-    </div>
+    <BaseTable
+      title="Sugerencias de Compra IA"
+      data={sugerencias}
+      columns={columns}
+    />
   );
 } 

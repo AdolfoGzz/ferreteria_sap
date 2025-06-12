@@ -34,5 +34,10 @@ export const API_ENDPOINTS = {
   // Product endpoints
   product: {
     all_products: '/api/productos' // GET
+  },
+
+  // AI endpoints
+  ai: {
+    predict: '/api/ia/predict'
   }
 } as const;

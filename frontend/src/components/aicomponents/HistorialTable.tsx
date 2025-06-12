@@ -1,11 +1,9 @@
 import { 
-  AnalyticalTable,
   FlexBox,
-  Icon,
-  Card,
-  Title
+  Icon
 } from '@ui5/webcomponents-react';
 import { useMemo } from 'react';
+import BaseTable from './BaseTable';
 
 export interface HistorialSugerencia {
   id: number;
@@ -20,35 +18,6 @@ export interface HistorialSugerencia {
 interface HistorialTableProps {
   historial: HistorialSugerencia[];
 }
-
-const STYLES = {
-  container: {
-    width: '100%',
-    marginBottom: '1.5rem'
-  },
-  card: {
-    width: '100%',
-    height: 'fit-content',
-    padding: '0',
-    overflow: 'hidden'
-  },
-  cardHeader: {
-    padding: '1rem',
-    borderBottom: '1px solid var(--sapList_BorderColor)',
-    fontSize: '1.125rem',
-    marginBottom: '1rem'
-  },
-  table: {
-    width: "100%",
-    boxShadow: "var(--sapContent_Shadow0)",
-    borderRadius: "var(--sapElement_BorderCornerRadius)",
-    marginBottom: "0",
-    height: 'fit-content'
-  },
-  content: {
-    padding: '1rem'
-  }
-} as const;
 
 export default function HistorialTable({ historial }: HistorialTableProps) {
   const columns = useMemo(() => [
@@ -96,22 +65,10 @@ export default function HistorialTable({ historial }: HistorialTableProps) {
   ], []);
 
   return (
-    <div style={STYLES.container}>
-      <Card style={STYLES.card}>
-        <Title level="H3" style={STYLES.cardHeader}>Historial de Sugerencias</Title>
-        <div style={STYLES.content}>
-          <AnalyticalTable
-            data={historial}
-            columns={columns}
-            selectionMode="None"
-            scaleWidthMode="Grow"
-            visibleRows={8}
-            minRows={4}
-            style={STYLES.table}
-            infiniteScroll={false}
-          />
-        </div>
-      </Card>
-    </div>
+    <BaseTable
+      title="Historial de Sugerencias"
+      data={historial}
+      columns={columns}
+    />
   );
 } 
