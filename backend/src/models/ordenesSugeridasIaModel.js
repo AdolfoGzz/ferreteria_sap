@@ -3,7 +3,7 @@ const db = require("../config/db");
 const ordenesSugeridadIaModel = {
   getAll: async () => {
     return new Promise((resolve, reject) => {
-      db.exec("SELECT * FROM Ordenes_sugeridad_ia", (err, result) => {
+      db.exec("SELECT * FROM Ordenes_sugeridas_ia", (err, result) => {
         if (err) return reject(err);
         resolve(result);
       });

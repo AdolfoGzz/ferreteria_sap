@@ -12,6 +12,10 @@ jest.mock('../../src/controllers/productosController', () => ({
   createCategory: jest.fn()
 }));
 
+jest.mock('../../src/middlewares/authMiddleware', () => ({
+  authMiddleware: (req, res, next) => next()
+}));
+
 describe('Product Routes', () => {
   let app;
 

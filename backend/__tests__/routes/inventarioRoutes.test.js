@@ -13,6 +13,10 @@ jest.mock('../../src/controllers/inventarioController', () => ({
   updateInventarioAndProducto: jest.fn()
 }));
 
+jest.mock('../../src/middlewares/authMiddleware', () => ({
+  authMiddleware: (req, res, next) => next()
+}));
+
 describe('Inventory Routes', () => {
   let app;
 

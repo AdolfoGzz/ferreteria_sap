@@ -9,6 +9,10 @@ jest.mock('../../src/controllers/ordenesSugeridasIaController', () => ({
   createOrden: jest.fn()
 }));
 
+jest.mock('../../src/middlewares/authMiddleware', () => ({
+  authMiddleware: (req, res, next) => next()
+}));
+
 describe('AI Order Suggestions Routes', () => {
   let app;
 

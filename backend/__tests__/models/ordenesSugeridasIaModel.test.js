@@ -20,7 +20,7 @@ describe('ordenesSugeridasIaModel', () => {
 
       const result = await ordenesSugeridasIaModel.getAll();
 
-      expect(db.exec).toHaveBeenCalledWith("SELECT * FROM Ordenes_sugeridad_ia", expect.any(Function));
+      expect(db.exec).toHaveBeenCalledWith("SELECT * FROM Ordenes_sugeridas_ia", expect.any(Function));
       expect(result).toEqual(mockResult);
     });
 
@@ -48,7 +48,7 @@ describe('ordenesSugeridasIaModel', () => {
 
       const result = await ordenesSugeridasIaModel.create(newOrden);
 
-      expect(db.prepare).toHaveBeenCalledWith(expect.stringContaining("INSERT INTO Ordenes_sugeridad_ia"), expect.any(Function));
+      expect(db.prepare).toHaveBeenCalledWith(expect.stringContaining("INSERT INTO Ordenes_sugeridas_ia"), expect.any(Function));
       expect(execMock).toHaveBeenCalledWith(
         [newOrden.producto_id, newOrden.cantidad_sugerida, newOrden.razon, newOrden.estado_id, newOrden.proveedor_id],
         expect.any(Function)

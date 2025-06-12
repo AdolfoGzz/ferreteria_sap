@@ -3,10 +3,15 @@ const express = require('express');
 const ventasRoutes = require('../../src/routes/ventasRoutes');
 const ventasController = require('../../src/controllers/ventasController');
 
-// Mock the ventas controller
+// ✅ Mock the ventas controller
 jest.mock('../../src/controllers/ventasController', () => ({
   getAllVentas: jest.fn(),
   createVenta: jest.fn()
+}));
+
+// ✅ Mock the auth middleware to bypass authentication
+jest.mock('../../src/middlewares/authMiddleware', () => ({
+  authMiddleware: (req, res, next) => next()
 }));
 
 describe('Sales Routes', () => {
@@ -61,4 +66,4 @@ describe('Sales Routes', () => {
       expect(ventasController.createVenta).toHaveBeenCalledTimes(1);
     });
   });
-}); 
+});

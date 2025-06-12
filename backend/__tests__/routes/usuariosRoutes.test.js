@@ -3,13 +3,18 @@ const express = require('express');
 const usuariosRoutes = require('../../src/routes/usuariosRoutes');
 const usuariosController = require('../../src/controllers/usuariosController');
 
-// Mock the usuarios controller
+// ✅ Mock the usuarios controller
 jest.mock('../../src/controllers/usuariosController', () => ({
   getAllUsuarios: jest.fn(),
   createUsuario: jest.fn(),
   getRoles: jest.fn(),
   updateUsuario: jest.fn(),
   deleteUsuario: jest.fn()
+}));
+
+// ✅ Mock the auth middleware to bypass authentication
+jest.mock('../../src/middlewares/authMiddleware', () => ({
+  authMiddleware: (req, res, next) => next()
 }));
 
 describe('User Routes', () => {
@@ -117,4 +122,4 @@ describe('User Routes', () => {
       expect(usuariosController.deleteUsuario).toHaveBeenCalledTimes(1);
     });
   });
-}); 
+});

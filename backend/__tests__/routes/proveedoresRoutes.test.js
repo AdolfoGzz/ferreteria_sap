@@ -3,13 +3,18 @@ const express = require('express');
 const proveedoresRoutes = require('../../src/routes/proveedoresRoutes');
 const proveedoresController = require('../../src/controllers/proveedoresController');
 
-// Mock the proveedores controller
+// ✅ Mock the proveedores controller
 jest.mock('../../src/controllers/proveedoresController', () => ({
   getAllProveedores: jest.fn(),
   getProveedorById: jest.fn(),
   createProveedor: jest.fn(),
   updateProveedor: jest.fn(),
   deleteProveedor: jest.fn()
+}));
+
+// ✅ Mock auth middleware to bypass JWT verification during testing
+jest.mock('../../src/middlewares/authMiddleware', () => ({
+  authMiddleware: (req, res, next) => next()
 }));
 
 describe('Supplier Routes', () => {
@@ -106,4 +111,4 @@ describe('Supplier Routes', () => {
       expect(proveedoresController.deleteProveedor).toHaveBeenCalledTimes(1);
     });
   });
-}); 
+});

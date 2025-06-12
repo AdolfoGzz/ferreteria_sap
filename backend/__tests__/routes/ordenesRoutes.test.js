@@ -15,6 +15,10 @@ jest.mock('../../src/controllers/ordenesController', () => ({
   deleteOrden: jest.fn()
 }));
 
+jest.mock('../../src/middlewares/authMiddleware', () => ({
+  authMiddleware: (req, res, next) => next()
+}));
+
 describe('Order Routes', () => {
   let app;
 
