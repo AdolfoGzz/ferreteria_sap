@@ -7,7 +7,7 @@ exports.authMiddleware = (req, res, next) => {
   const token = authHeader.split(' ')[1];
 
   try {
-    const decoded = jwt.verify(token, process.env.CLAVE_TOKEN); // 👈 dinámico aquí
+    const decoded = jwt.verify(token, process.env.CLAVE_TOKEN);
     req.user = decoded;
     next();
   } catch {
